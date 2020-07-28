@@ -1,0 +1,46 @@
+﻿@inherits LayoutComponentBase
+@implements IDisposable
+@inject IMessageService MessageService
+
+<!-- main app container -->
+<div class="container text-center my-3">
+    @Body
+    @foreach (var message in messages)
+    {
+        <div class="alert alert-sm alert-info">@message</div>
+    }
+</div>
+
+<!-- credits -->
+<div class="text-center mt-4">
+    <p>
+        <a href="#" target="_top">ASP.NET Core Blazor WebAssembly - Communication Between Components</a>
+    </p>
+    <p>
+        <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+    </p>
+</div>
+
+@code {
+    private List<string> messages = new List<string>();
+    
+    protected override void OnInitialized()
+    {
+        MessageService.OnMessage += MessageHandler;
+    }
+
+    public void Dispose()
+    {
+        MessageService.OnMessage -= MessageHandler;
+    }
+
+    private void MessageHandler(string message)
+    {
+        if (message != null)
+            messages.Add(message);
+        else
+            messages.Clear();
+            
+        StateHasChanged();
+    }
+}

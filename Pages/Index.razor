@@ -1,0 +1,22 @@
+﻿@page "/"
+@inject IMessageService MessageService
+
+<div class="card mb-3">
+    <h4 class="card-header">Blazor WebAssembly Component Communication</h4>
+    <div class="card-body">
+        <button @onclick="SendMessage" class="btn btn-primary mr-2">Send Message</button>
+        <button @onclick="ClearMessages" class="btn btn-secondary">Clear Messages</button>
+    </div>
+</div>
+
+@code {
+    private void SendMessage()
+    {
+        MessageService.SendMessage("Message from Home Component to Main Layout Component!");
+    }
+
+    private void ClearMessages()
+    {
+        MessageService.ClearMessages();
+    }
+}
