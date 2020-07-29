@@ -11,26 +11,18 @@
     }
 </div>
 
-<!-- credits -->
-<div class="text-center mt-4">
-    <p>
-        <a href="#" target="_top">ASP.NET Core Blazor WebAssembly - Communication Between Components</a>
-    </p>
-    <p>
-        <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
-    </p>
-</div>
-
 @code {
     private List<string> messages = new List<string>();
     
     protected override void OnInitialized()
     {
+        // add event handler
         MessageService.OnMessage += MessageHandler;
     }
 
     public void Dispose()
     {
+        // remove event handler
         MessageService.OnMessage -= MessageHandler;
     }
 
