@@ -11,16 +11,16 @@ namespace BlazorApp.Services
 
     public class MessageService : IMessageService
     {
-        public event Action<string> OnMessage = delegate {};
+        public event Action<string> OnMessage;
 
         public void SendMessage(string message)
         {
-            OnMessage(message);
+            OnMessage?.Invoke(message);
         }
 
         public void ClearMessages()
         {
-            OnMessage(null);
+            OnMessage?.Invoke(null);
         }
     }
 }

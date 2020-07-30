@@ -16,13 +16,13 @@
     
     protected override void OnInitialized()
     {
-        // add event handler
+        // subscribe to OnMessage event
         MessageService.OnMessage += MessageHandler;
     }
 
     public void Dispose()
     {
-        // remove event handler
+        // unsubscribe from OnMessage event
         MessageService.OnMessage -= MessageHandler;
     }
 
